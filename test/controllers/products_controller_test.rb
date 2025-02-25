@@ -1,6 +1,8 @@
 require "test_helper"
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
+  fixtures :products, :carts, :line_items
+
   setup do
     @product = products(:one)
   end
