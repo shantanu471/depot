@@ -28,7 +28,11 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to cart_url(@line_item.cart) }
+
+        format.turbo_stream { @current_item = @line_item } # Render the turbo stream, will use template file
+
+        # format.html { redirect_to cart_url(@line_item.cart) } # Redirect to cart
+        format.html { redirect_to store_index_url }  # Redirect to store index (home page)
         format.json { render :show,
           status: :created, location: @line_item }
       else
